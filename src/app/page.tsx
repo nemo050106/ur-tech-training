@@ -1,10 +1,22 @@
-import Image from "next/image";
+import { searchProducts } from "../lib/products";
+import { filterByCategory } from "../lib/products";
+
+import products from "../data/products.json";
 
 export default function Home() {
+  const searchProductsResult = searchProducts(products, "Accessories");
+  // console.log(searchProductsResult);
+  const filterProductsResult = filterByCategory(products, "all");
+  console.log(filterProductsResult);
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Neyamul</h1>
-      <h1>Shopdesk - Conflict Resolved</h1>
+      <div>
+        <h1>Neyamul</h1>
+        <h1>Shopdesk - Conflict Resolved</h1>
+      </div>
+
+      <div> watch the console to see the datas you are searching for</div>
     </div>
   );
 }
