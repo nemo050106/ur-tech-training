@@ -55,43 +55,45 @@ export const sortProducts = (products, field, direction) => {
   return sortedProducts;
 };
 
-// summury function
-// export const getInventorySummary = (products) => {
-//   return products.reduce(
-//     // summary = ACCUMULATOR
-//     // It stores the result while reduce() goes through each product.
-//     (summary, product) => {
+// summury function(Number 4)
 
-//       // Count total number of products
-//       summary.totalProducts += 1;
+// array.reduce(callback(accumulator, currentValue, currentIndex, array), initialValue)
 
-//       // If the product is active, increase active product count
-//       if (product.isActive) {
-//         summary.activeProducts += 1;
-//       }
+export const getInventorySummary = (products) => {
+  return products.reduce(
+    (summary, product) => {
+      summary.totalProducts += 1;
 
-//       // If stock is 0, the product is out of stock
-//       if (product.stock === 0) {
-//         summary.outOfStock += 1;
-//       }
+      if (product.isActive) {
+        summary.activeProducts += 1;
+      }
 
-//       // Calculate total value of this product's stock
-//       // price × stock = stock value
-//       summary.totalStockValue += product.price * product.stock;
+      if (product.stock === 0) {
+        summary.outOfStock += 1;
+      }
 
-//       // Return the updated accumulator for the next product
-//       return summary;
-//     },
+      summary.totalStockValue += product.price * product.stock;
 
-//     // Initial value of the ACCUMULATOR
-//     {
-//       totalProducts: 0,
-//       activeProducts: 0,
-//       outOfStock: 0,
-//       totalStockValue: 0,
-//     }
-//   );
-// };
+      return summary;
+    },
+
+    {
+      totalProducts: 0,
+      activeProducts: 0,
+      outOfStock: 0,
+      totalStockValue: 0,
+    },
+  );
+};
+
+// currency format function (Number 5)
+// new Intl.NumberFormat(locale, options)
+export const formatPrice = (amount) => {
+  return new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "IND",
+  }).format(amount);
+};
 
 // Fetch products from DummyJSON API (number 6)
 export const fetchProducts = async () => {

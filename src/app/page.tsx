@@ -1,5 +1,10 @@
-import { searchProducts, sortProducts } from "../lib/products";
-import { filterByCategory } from "../lib/products";
+import {
+  getInventorySummary,
+  searchProducts,
+  sortProducts,
+  filterByCategory,
+  formatPrice,
+} from "../lib/products";
 
 import products from "../data/products.json";
 
@@ -9,7 +14,11 @@ export default function Home() {
   const filterProductsResult = filterByCategory(products, "all");
   // console.log(filterProductsResult);
   const sortProductsResult = sortProducts(products, "price", "desc");
-  console.log(sortProductsResult)
+  // console.log(sortProductsResult)
+  const getInventorySummaryResult = getInventorySummary(products);
+  // console.log(getInventorySummaryResult);
+  const formatPriceResult = formatPrice(20000)
+  console.log(formatPriceResult)
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
